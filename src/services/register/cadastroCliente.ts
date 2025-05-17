@@ -1,7 +1,7 @@
-import Entrada from "../io/entrada"
-import Cliente from "../modelo/cliente"
-import CPF from "../modelo/cpf"
-import Cadastro from "./cadastro"
+import Entrada from "../../client/entrada"
+import Cliente from "../../models/cliente"
+import CPF from "../../models/cpf"
+import Cadastro from "../register/cadastro"
 
 export default class CadastroCliente extends Cadastro {
     private clientes: Array<Cliente>

@@ -1,7 +1,7 @@
-import Entrada from "../io/entrada";
-import Empresa from "../modelo/empresa";
-import CadastroCliente from "../negocio/cadastroCliente";
-import ListagemClientes from "../negocio/listagemClientes";
+import Entrada from "../client/entrada";
+import Empresa from "../models/empresa";
+import CadastroCliente from "../services/register/cadastroCliente";
+import ListagemClientes from "../services/listing/listagemClientes";
 
 console.log(`Bem-vindo ao melhor sistema de gerenciamento de pet shops e clínicas veterinarias`)
 let empresa = new Empresa()
