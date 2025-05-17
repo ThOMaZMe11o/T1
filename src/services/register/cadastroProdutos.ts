@@ -1,6 +1,6 @@
 import Entrada from "../../client/entrada";
 import Produto from "../../models/produto";
-import Cadastro from "../register/cadastro";
+import Cadastro from "./cadastro";
 
 export default class CadastroProduto extends Cadastro {
     private produtos: Produto[];

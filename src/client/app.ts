@@ -3,7 +3,7 @@ import Empresa from "../models/empresa";
 import CadastroCliente from "../services/register/cadastroCliente";
 import ListagemClientes from "../services/listing/listagemClientes";
 import ListagemPets from "../services/listing/listagemPets";
-import CadastroProduto from "../services/register/cadastroProduto";
+import CadastroProduto from "../services/register/cadastroProdutos";
 import CadastroServico from "../services/register/cadastroServicos";
 
 export default class App {
