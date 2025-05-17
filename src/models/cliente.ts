@@ -6,11 +6,13 @@ export default class Cliente {
     private nomeSocial: string;
     private cpf: CPF;
     private pets: Pet[] = [];
+    private quantidadeConsumida: number
 
     constructor(nome: string, nomeSocial: string, cpf: CPF) {
         this.nome = nome;
         this.nomeSocial = nomeSocial;
         this.cpf = cpf;
+        this.quantidadeConsumida = 0;
     }
 
     public getNome(): string {
@@ -31,5 +33,13 @@ export default class Cliente {
 
     public adicionarPet(pet: Pet): void {
         this.pets.push(pet);
+    }
+
+    public getQuantidadeConsumida(): number {
+        return this.quantidadeConsumida;
+    }
+
+    public incrementarConsumo(quantidade: number = 1): void {
+        this.quantidadeConsumida += quantidade;
     }
 }
