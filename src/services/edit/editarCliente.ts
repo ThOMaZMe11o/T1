@@ -1,11 +1,13 @@
 import Cliente from "../../models/cliente";
 import Entrada from "../../client/entrada";
+import Editar from "./editar";
 
-export default class EditeCliente {
+export default class EditarCliente extends Editar {
     private clientes: Array<Cliente>;
     private entrada: Entrada;
 
     constructor(clientes: Array<Cliente>) {
+        super();
         this.clientes = clientes;
         this.entrada = new Entrada();
     }
@@ -49,33 +51,11 @@ export default class EditeCliente {
 
         // Aplicar as alterações
         if (novoNome.trim()) {
-            // Adicionar método setNome na classe Cliente
-            if (typeof clienteSelecionado.setNome === 'function') {
-                clienteSelecionado.setNome(novoNome);
-            } else {
-                console.log(`\n⚠️ Não foi possível editar o nome. Método setNome não encontrado na classe Cliente.`);
-                console.log(`Adicione o seguinte método à sua classe Cliente:`);
-                console.log(`
-public setNome(nome: string): void {
-    this.nome = nome;
-}
-                `);
-            }
+            clienteSelecionado.setNome(novoNome);
         }
 
         if (novoNomeSocial.trim()) {
-            // Adicionar método setNomeSocial na classe Cliente
-            if (typeof clienteSelecionado.setNomeSocial === 'function') {
-                clienteSelecionado.setNomeSocial(novoNomeSocial);
-            } else {
-                console.log(`\n⚠️ Não foi possível editar o nome social. Método setNomeSocial não encontrado na classe Cliente.`);
-                console.log(`Adicione o seguinte método à sua classe Cliente:`);
-                console.log(`
-public setNomeSocial(nomeSocial: string): void {
-    this.nomeSocial = nomeSocial;
-}
-                `);
-            }
+            clienteSelecionado.setNomeSocial(novoNomeSocial);
         }
 
         console.log(`\n✅ Cliente editado com sucesso!`);

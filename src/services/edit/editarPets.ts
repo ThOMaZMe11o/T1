@@ -1,11 +1,13 @@
 import Cliente from "../../models/cliente";
 import Entrada from "../../client/entrada";
+import Editar from "./editar";
 
-export default class EditePet {
+export default class EditarPet extends Editar {
     private clientes: Array<Cliente>;
     private entrada: Entrada;
 
     constructor(clientes: Array<Cliente>) {
+        super();
         this.clientes = clientes;
         this.entrada = new Entrada();
     }
