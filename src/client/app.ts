@@ -8,6 +8,8 @@ import ListagemServicos from "../services/listing/listagemServicos";
 import CadastroProduto from "../services/register/cadastroProdutos";
 import CadastroServico from "../services/register/cadastroServicos";
 import ListagemMaisConsumido from "../services/listing/listagemMaisConsumidos";
+import ListagemTopClientes from "../services/listing/listagemTopCleintes";
+
 
 export default class App {
     private entrada: Entrada;
@@ -61,7 +63,8 @@ export default class App {
                     console.log(`\n[🔧 Em construção] Registrar Consumo\n`);
                     break;
                 case 6:
-                    console.log(`\n[🔧 Em construção] Top 10 Clientes por Quantidade\n`);
+                    const listagemTopClientes = new ListagemTopClientes(this.empresa.getClientes());
+                    listagemTopClientes.listar();
                     break;
                 case 7:
                     console.log(`\n[🔧 Em construção] Produtos/Serviços por Raça\n`);
@@ -87,11 +90,7 @@ export default class App {
                     listagemServicos.listar();
                     break;
                 case 13:
-                    // Listagem dos produtos e serviços mais consumidos
-                    const listagemMaisConsumido = new ListagemMaisConsumido(
-                        this.empresa.getProdutos(), 
-                        this.empresa.getServicos()
-                    );
+                    const listagemMaisConsumido = new ListagemMaisConsumido(this.empresa.getProdutos(), this.empresa.getServicos());
                     listagemMaisConsumido.listar();
                     break;
                 case 0:
