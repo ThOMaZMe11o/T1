@@ -6,7 +6,7 @@ export default class Cliente {
     private nomeSocial: string;
     private cpf: CPF;
     private pets: Pet[] = [];
-    private quantidadeConsumida: number
+    private quantidadeConsumida: number;
 
     constructor(nome: string, nomeSocial: string, cpf: CPF) {
         this.nome = nome;
@@ -41,5 +41,13 @@ export default class Cliente {
 
     public incrementarConsumo(quantidade: number = 1): void {
         this.quantidadeConsumida += quantidade;
+    }
+
+    public setNome(nome: string): void {
+        this.nome = nome;
+    }
+
+    public setNomeSocial(nomeSocial: string): void {
+        this.nomeSocial = nomeSocial;
     }
 }
