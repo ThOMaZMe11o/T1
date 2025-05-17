@@ -2,6 +2,7 @@ import Entrada from "../client/entrada";
 import Empresa from "../models/empresa";
 import CadastroCliente from "../services/register/cadastroCliente";
 import ListagemClientes from "../services/listing/listagemClientes";
+import ListagemPets from "../services/listing/listagemPets";
 import CadastroProduto from "../services/register/cadastroProduto";
 import CadastroServico from "../services/register/cadastroServicos";
 
@@ -28,6 +29,7 @@ export default class App {
             console.log(`5 - Registrar Consumo`);
             console.log(`6 - Listar Top 10 Clientes por Quantidade`);
             console.log(`7 - Listar Produtos/Serviços por Raça`);
+            console.log(`8 - Listar Pets`);
             console.log(`9 - Cadastrar Produto`);
             console.log(`10 - Cadastrar Serviço`);
             console.log(`0 - Sair\n`);
@@ -47,6 +49,8 @@ export default class App {
                     console.log(`\n[🔧 Em construção] Excluir Cliente\n`);
                     break;
                 case 4:
+                    const listagemClientes = new ListagemClientes(this.empresa.getClientes());
+                    listagemClientes.listar();
                     console.log(`\n[🔧 Em construção] Listar Clientes\n`);
                     break;
                 case 5:
@@ -57,6 +61,11 @@ export default class App {
                     break;
                 case 7:
                     console.log(`\n[🔧 Em construção] Produtos/Serviços por Raça\n`);
+                    break;
+                case 8:
+                    const listagemPets = new ListagemPets(this.empresa.getClientes());
+                    listagemPets.listar();
+                    console.log(`\n[🔧 Em construção] Listar Pets\n`);
                     break;
                 case 9:
                     const cadastroProduto = new CadastroProduto(this.empresa.getProdutos());
