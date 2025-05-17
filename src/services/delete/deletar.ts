@@ -1,3 +1,3 @@
-export default abstract class Deletar {
+export default abstract class Delete {
     public abstract deletar(): void;
 }
