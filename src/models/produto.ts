@@ -34,4 +34,20 @@ export default class Produto {
     public adicionarRacaCompativel(raca: string): void {
         this.racasCompativeis.push(raca);
     }
+
+    public setNome(nome: string): void {
+        this.nome = nome;
+    }
+
+    public setPreco(preco: number): void {
+        this.preco = preco;
+    }
+
+    public setRacasCompativeis(racas: Array<string>): void {
+        this.racasCompativeis = racas;
+    }
+
+    public limparRacasCompativeis(): void {
+        this.racasCompativeis = [];
+    }
 }
