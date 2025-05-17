@@ -9,6 +9,7 @@ import CadastroProduto from "../services/register/cadastroProdutos";
 import CadastroServico from "../services/register/cadastroServicos";
 import ListagemMaisConsumido from "../services/listing/listagemMaisConsumidos";
 import ListagemTopClientes from "../services/listing/listagemTopCleintes";
+import ListagemPorRaca from "../services/listing/listagemTipoRaca";
 
 
 export default class App {
@@ -67,7 +68,8 @@ export default class App {
                     listagemTopClientes.listar();
                     break;
                 case 7:
-                    console.log(`\n[🔧 Em construção] Produtos/Serviços por Raça\n`);
+                    const listagemPorRaca = new ListagemPorRaca(this.empresa.getProdutos(), this.empresa.getServicos());
+                    listagemPorRaca.listar();
                     break;
                 case 8:
                     const listagemPets = new ListagemPets(this.empresa.getClientes());
