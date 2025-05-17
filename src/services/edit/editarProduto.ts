@@ -1,0 +1,159 @@
+import Produto from "../../models/produto";
+import Entrada from "../../client/entrada";
+import Editar from "./editar";
+
+export default class EditeProduto extends Editar {
+    private produtos: Array<Produto>;
+    private entrada: Entrada;
+
+    constructor(produtos: Array<Produto>) {
+        super();
+        this.produtos = produtos;
+        this.entrada = new Entrada();
+    }
+
+    public editar(): void {
+        console.log(`\n-------------------------------------------------`);
+        console.log(`Edição de Produto`);
+        console.log(`-------------------------------------------------`);
+
+        if (this.produtos.length === 0) {
+            console.log(`\nNão há produtos cadastrados para editar.`);
+            return;
+        }
+
+        // Listar os produtos disponíveis
+        console.log(`\nProdutos disponíveis para edição:`);
+        this.produtos.forEach((produto, index) => {
+            console.log(`${index + 1} - ${produto.getNome()} - R$ ${produto.getPreco().toFixed(2)}`);
+        });
+
+        // Selecionar o produto a ser editado
+        const produtoIndex = this.entrada.receberNumero(`\nSelecione o produto pelo número: `) - 1;
+        
+        if (produtoIndex < 0 || produtoIndex >= this.produtos.length) {
+            console.log(`\n❌ Índice de produto inválido!`);
+            return;
+        }
+
+        const produtoSelecionado = this.produtos[produtoIndex];
+
+        console.log(`\nEditando produto: ${produtoSelecionado.getNome()}`);
+        console.log(`Nome atual: ${produtoSelecionado.getNome()}`);
+        console.log(`Preço atual: R$ ${produtoSelecionado.getPreco().toFixed(2)}`);
+        
+        // Mostrar raças compatíveis atuais
+        const racasCompativeis = produtoSelecionado.getRacasCompativeis();
+        if (racasCompativeis.length === 0) {
+            console.log(`Raças compatíveis: Todas as raças`);
+        } else {
+            console.log(`Raças compatíveis: ${racasCompativeis.join(', ')}`);
+        }
+
+        // Editar nome
+        const novoNome = this.entrada.receberTexto(`\nInforme o novo nome (ou deixe em branco para manter o atual): `);
+        
+        // Editar preço
+        const novoPrecoStr = this.entrada.receberTexto(`Informe o novo preço (ou deixe em branco para manter o atual): `);
+        
+        // Editar raças compatíveis
+        const editarRacas = this.entrada.receberTexto(`Deseja editar as raças compatíveis? (S/N): `);
+
+        // Aplicar as alterações
+        if (novoNome.trim()) {
+            // Adicionar método setNome na classe Produto se não existir
+            if (typeof produtoSelecionado.setNome === 'function') {
+                produtoSelecionado.setNome(novoNome);
+            } else {
+                console.log(`\n⚠️ Não foi possível editar o nome. Método setNome não encontrado na classe Produto.`);
+                console.log(`Adicione o seguinte método à sua classe Produto:`);
+                console.log(`
+public setNome(nome: string): void {
+    this.nome = nome;
+}
+                `);
+            }
+        }
+
+        if (novoPrecoStr.trim()) {
+            const novoPreco = parseFloat(novoPrecoStr);
+            if (!isNaN(novoPreco) && novoPreco >= 0) {
+                // Adicionar método setPreco na classe Produto se não existir
+                if (typeof produtoSelecionado.setPreco === 'function') {
+                    produtoSelecionado.setPreco(novoPreco);
+                } else {
+                    console.log(`\n⚠️ Não foi possível editar o preço. Método setPreco não encontrado na classe Produto.`);
+                    console.log(`Adicione o seguinte método à sua classe Produto:`);
+                    console.log(`
+public setPreco(preco: number): void {
+    this.preco = preco;
+}
+                    `);
+                }
+            } else {
+                console.log(`\n❌ Preço inválido! O preço deve ser um número positivo.`);
+            }
+        }
+
+        if (editarRacas.trim().toUpperCase() === 'S') {
+            // Limpar raças atuais e adicionar novas
+            if (typeof produtoSelecionado.setRacasCompativeis === 'function') {
+                const novasRacas: string[] = [];
+                
+                console.log(`\nEdição de raças compatíveis:`);
+                console.log(`(Deixe em branco e pressione Enter para finalizar)`);
+                
+                let adicionandoRacas = true;
+                let contador = 1;
+                
+                while (adicionandoRacas) {
+                    const raca = this.entrada.receberTexto(`Raça ${contador}: `);
+                    if (raca.trim()) {
+                        novasRacas.push(raca.trim());
+                        contador++;
+                    } else {
+                        adicionandoRacas = false;
+                    }
+                }
+                
+                produtoSelecionado.setRacasCompativeis(novasRacas);
+            } else {
+                // Se não existir o método setRacasCompativeis, tentar limpar e adicionar uma a uma
+                if (typeof produtoSelecionado.limparRacasCompativeis === 'function') {
+                    produtoSelecionado.limparRacasCompativeis();
+                    
+                    console.log(`\nEdição de raças compatíveis:`);
+                    console.log(`(Deixe em branco e pressione Enter para finalizar)`);
+                    
+                    let adicionandoRacas = true;
+                    let contador = 1;
+                    
+                    while (adicionandoRacas) {
+                        const raca = this.entrada.receberTexto(`Raça ${contador}: `);
+                        if (raca.trim()) {
+                            produtoSelecionado.adicionarRacaCompativel(raca.trim());
+                            contador++;
+                        } else {
+                            adicionandoRacas = false;
+                        }
+                    }
+                } else {
+                    console.log(`\n⚠️ Não foi possível editar as raças compatíveis. Métodos necessários não encontrados na classe Produto.`);
+                    console.log(`Adicione os seguintes métodos à sua classe Produto:`);
+                    console.log(`
+public setRacasCompativeis(racas: Array<string>): void {
+    this.racasCompativeis = racas;
+}
+
+public limparRacasCompativeis(): void {
+    this.racasCompativeis = [];
+}
+                    `);
+                }
+            }
+        }
+
+        console.log(`\n✅ Produto editado com sucesso!`);
+        console.log(`-------------------------------------------------\n`);
+    }
+}
