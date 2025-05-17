@@ -4,7 +4,6 @@ export default class Consumo {
     private servico?: any; // Substitua 'any' pelo tipo correto de Servico
     private data: Date;
     private quantidade: number;
-    private consumos: Array<Consumo> = [];
 
     constructor(cliente: any, data: Date, quantidade: number = 1) {
         this.cliente = cliente;
@@ -30,10 +29,6 @@ export default class Consumo {
 
     public getQuantidade(): number {
         return this.quantidade;
-    }
-
-    public getConsumos(): Array<Consumo> {
-        return this.consumos;
     }
 
     public setProduto(produto: any): void {

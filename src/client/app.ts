@@ -10,6 +10,7 @@ import CadastroServico from "../services/register/cadastroServicos";
 import ListagemMaisConsumido from "../services/listing/listagemMaisConsumidos";
 import ListagemTopClientes from "../services/listing/listagemTopCleintes";
 import ListagemPorRaca from "../services/listing/listagemTipoRaca";
+import RegistroConsumo from "../services/register/registroConsumo";
 
 
 export default class App {
@@ -61,7 +62,8 @@ export default class App {
                     listagemClientes.listar();
                     break;
                 case 5:
-                    console.log(`\n[🔧 Em construção] Registrar Consumo\n`);
+                    const registroConsumo = new RegistroConsumo(this.empresa.getClientes(), this.empresa.getProdutos(), this.empresa.getServicos(), this.empresa.getConsumos());
+                    registroConsumo.registrar();
                     break;
                 case 6:
                     const listagemTopClientes = new ListagemTopClientes(this.empresa.getClientes());
