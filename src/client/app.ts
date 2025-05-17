@@ -3,6 +3,8 @@ import Empresa from "../models/empresa";
 import CadastroCliente from "../services/register/cadastroCliente";
 import ListagemClientes from "../services/listing/listagemClientes";
 import ListagemPets from "../services/listing/listagemPets";
+import ListagemProdutos from "../services/listing/listagemProdutos";
+import ListagemServicos from "../services/listing/listagemServicos";
 import CadastroProduto from "../services/register/cadastroProdutos";
 import CadastroServico from "../services/register/cadastroServicos";
 
@@ -32,6 +34,8 @@ export default class App {
             console.log(`8 - Listar Pets`);
             console.log(`9 - Cadastrar Produto`);
             console.log(`10 - Cadastrar Serviço`);
+            console.log(`11 - Listar Produtos`);
+            console.log(`12 - Listar Serviços`);
             console.log(`0 - Sair\n`);
 
             let opcao = this.entrada.receberNumero(`Por favor, escolha uma opção: `);
@@ -76,6 +80,16 @@ export default class App {
                     const cadastroServico = new CadastroServico(this.empresa.getServicos());
                     cadastroServico.cadastrar();
                     console.log(`\n[🔧 Em construção] Cadastrar Serviço\n`);
+                    break;
+                case 11:
+                    const listagemProdutos = new ListagemProdutos(this.empresa.getProdutos());
+                    listagemProdutos.listar();  
+                    console.log(`\n[🔧 Em construção] Listar Produtos\n`);
+                    break;
+                case 12:
+                    const listagemServicos = new ListagemServicos(this.empresa.getServicos());
+                    listagemServicos.listar();
+                    console.log(`\n[🔧 Em construção] Listar Serviços\n`);
                     break;
 
                 case 0:
