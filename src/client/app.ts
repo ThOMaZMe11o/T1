@@ -2,12 +2,16 @@ import Entrada from "../client/entrada";
 import Empresa from "../models/empresa";
 import CadastroCliente from "../services/register/cadastroCliente";
 import ListagemClientes from "../services/listing/listagemClientes";
+import CadastroProduto from "../services/register/cadastroProduto";
+import CadastroServico from "../services/register/cadastroServicos";
 
 export default class App {
     private entrada: Entrada;
+    private empresa: Empresa;
 
     constructor() {
         this.entrada = new Entrada();
+        this.empresa = new Empresa();
     }
 
     public iniciar(): void {
@@ -24,12 +28,16 @@ export default class App {
             console.log(`5 - Registrar Consumo`);
             console.log(`6 - Listar Top 10 Clientes por Quantidade`);
             console.log(`7 - Listar Produtos/Serviços por Raça`);
+            console.log(`9 - Cadastrar Produto`);
+            console.log(`10 - Cadastrar Serviço`);
             console.log(`0 - Sair\n`);
 
             let opcao = this.entrada.receberNumero(`Por favor, escolha uma opção: `);
 
             switch (opcao) {
                 case 1:
+                    const cadastroCliente = new CadastroCliente(this.empresa.getClientes());
+                    cadastroCliente.cadastrar();
                     console.log(`\n[🔧 Em construção] Cadastrar Cliente\n`);
                     break;
                 case 2:
@@ -50,6 +58,17 @@ export default class App {
                 case 7:
                     console.log(`\n[🔧 Em construção] Produtos/Serviços por Raça\n`);
                     break;
+                case 9:
+                    const cadastroProduto = new CadastroProduto(this.empresa.getProdutos());
+                    cadastroProduto.cadastrar();
+                    console.log(`\n[🔧 Em construção] Cadastrar Produto\n`);
+                    break;
+                case 10:
+                    const cadastroServico = new CadastroServico(this.empresa.getServicos());
+                    cadastroServico.cadastrar();
+                    console.log(`\n[🔧 Em construção] Cadastrar Serviço\n`);
+                    break;
+
                 case 0:
                     execucao = false;
                     console.log(`\nEncerrando o sistema. Até mais! 🐾\n`);
