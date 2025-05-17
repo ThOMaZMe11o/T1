@@ -1,25 +1,29 @@
+import Cliente from "../models/cliente";
+import Produto from "../models/produto";
+import Servico from "../models/servico";
+
 export default class Consumo {
-    private cliente: any; // Substitua 'any' pelo tipo correto de Cliente
-    private produto?: any; // Substitua 'any' pelo tipo correto de Produto
-    private servico?: any; // Substitua 'any' pelo tipo correto de Servico
+    private cliente: Cliente;
+    private produto?: Produto;
+    private servico?: Servico;
     private data: Date;
     private quantidade: number;
 
-    constructor(cliente: any, data: Date, quantidade: number = 1) {
+    constructor(cliente: Cliente, data: Date, quantidade: number = 1) {
         this.cliente = cliente;
         this.data = data;
         this.quantidade = quantidade;
     }
 
-    public getCliente(): any {
+    public getCliente(): Cliente {
         return this.cliente;
     }
 
-    public getProduto(): any | undefined {
+    public getProduto(): Produto | undefined {
         return this.produto;
     }
 
-    public getServico(): any | undefined {
+    public getServico(): Servico | undefined {
         return this.servico;
     }
 
@@ -31,12 +35,12 @@ export default class Consumo {
         return this.quantidade;
     }
 
-    public setProduto(produto: any): void {
+    public setProduto(produto: Produto): void {
         this.produto = produto;
         this.servico = undefined; 
     }
 
-    public setServico(servico: any): void {
+    public setServico(servico: Servico): void {
         this.servico = servico;
         this.produto = undefined;
     }
@@ -46,11 +50,11 @@ export default class Consumo {
     }
 
     public getNomeItem(): string {
-        return this.produto ? this.produto.getNome() : this.servico.getNome();
+        return this.produto ? this.produto.getNome() : this.servico!.getNome();
     }
 
     public getValorTotal(): number {
-        const valorUnitario = this.produto ? this.produto.getPreco() : this.servico.getPreco();
+        const valorUnitario = this.produto ? this.produto.getPreco() : this.servico!.getPreco();
         return valorUnitario * this.quantidade;
     }
 }

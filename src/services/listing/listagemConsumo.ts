@@ -34,7 +34,7 @@ export default class ListagemConsumos extends Listagem {
                 const valorTotal = consumo.getValorTotal().toFixed(2);
                 
                 console.log(`\nConsumo #${index + 1}:`);
-                console.log(`Cliente: ${cliente.getNome()} ${cliente.getSobrenome ? cliente.getSobrenome() : ''}`);
+                console.log(`Cliente: ${cliente.getNome()} ${cliente.getNomeSocial ? cliente.getNomeSocial() : ''}`);
                 console.log(`CPF: ${cliente.getCpf().getValor()}`);
                 console.log(`Item: ${nomeItem} (${tipo})`);
                 console.log(`Quantidade: ${quantidade}`);
