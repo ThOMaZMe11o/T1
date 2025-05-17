@@ -1,25 +1,31 @@
 import Entrada from "../client/entrada";
 import Empresa from "../models/empresa";
+// Cliente
 import CadastroCliente from "../services/register/cadastroCliente";
+import EditeCliente from "../services/edit/editarCliente";
+import DeleteCliente from "../services/delete/deletarCliente";
 import ListagemClientes from "../services/listing/listagemClientes";
-import ListagemPets from "../services/listing/listagemPets";
-import ListagemProdutos from "../services/listing/listagemProdutos";
-import ListagemServicos from "../services/listing/listagemServicos";
-import CadastroProduto from "../services/register/cadastroProdutos";
-import CadastroServico from "../services/register/cadastroServicos";
-import ListagemMaisConsumido from "../services/listing/listagemMaisConsumidos";
 import ListagemTopClientes from "../services/listing/listagemTopCleintes";
+// Pets
+import CadastroPets from "../services/register/cadastroPets";
+import EditePet from "../services/edit/editarPets";
+import DeletePet from "../services/delete/deletarPets";
+import ListagemPets from "../services/listing/listagemPets";
 import ListagemPorRaca from "../services/listing/listagemTipoRaca";
+// Produtos
+import CadastroProduto from "../services/register/cadastroProdutos";
+import EditeProduto from "../services/edit/editarProduto";
+import DeleteProduto from "../services/delete/deletarProduto";
+import ListagemProdutos from "../services/listing/listagemProdutos";
+// Serviços
+import CadastroServico from "../services/register/cadastroServicos";
+import ListagemServicos from "../services/listing/listagemServicos";
+import EditeServico from "../services/edit/editarServico";
+import DeleteServico from "../services/delete/deletarServicos";
+// Consumos
+import ListagemMaisConsumido from "../services/listing/listagemMaisConsumidos";
 import RegistroConsumo from "../services/register/registroConsumo";
 import ListagemConsumos from "../services/listing/listagemConsumo";
-import EditeCliente from "../services/edit/editarCliente";
-import EditePet from "../services/edit/editarPets";
-import EditeProduto from "../services/edit/editarProduto";
-import EditeServico from "../services/edit/editarServico";
-import DeleteCliente from "../services/delete/deletarCliente";
-import DeletePet from "../services/delete/deletarPets";
-import DeleteProduto from "../services/delete/deletarProduto";
-import DeleteServico from "../services/delete/deletarServicos";
 
 export default class App {
     private entrada: Entrada;
@@ -121,6 +127,10 @@ export default class App {
                     const deleteServico = new DeleteServico(this.empresa.getServicos(), this.empresa.getConsumos());
                     deleteServico.deletar();
                     break;
+                case 21:
+                    const cadastrarPets = new CadastroPets(this.empresa.getClientes());
+                    cadastrarPets.cadastrar();
+                    break;
                 case 0:
                     execucao = false;
                     console.log(`\n${this.colorir("Encerrando o sistema. Até mais! 🐾", "verde")}\n`);
@@ -151,35 +161,36 @@ export default class App {
         console.log(`${this.colorir("╠═══════════════════════════════════════════════════════════════╣", "amarelo")}`);
         console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
         console.log(`${this.colorir("║  CLIENTES:                                                    ║", "amarelo")}`);
-        console.log(`${this.colorir("║    1 - Cadastrar Cliente          2 - Editar Cliente          ║", "amarelo")}`);
-        console.log(`${this.colorir("║    3 - Excluir Cliente            4 - Listar Clientes         ║", "amarelo")}`);
-        console.log(`${this.colorir("║    6 - Top 10 Clientes                                        ║", "amarelo")}`);
+        console.log(`${this.colorir("║    1 - Cadastrar Cliente          3 - Editar Cliente          ║", "amarelo")}`);
+        console.log(`${this.colorir("║    2 - Excluir Cliente            4 - Listar Clientes         ║", "amarelo")}`);
+        console.log(`${this.colorir("║    5 - Top 10 Clientes                                        ║", "amarelo")}`);
         console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
         console.log(`${this.colorir("║  PETS:                                                        ║", "amarelo")}`);
-        console.log(`${this.colorir("║    8 - Listar Pets                15 - Editar Pet             ║", "amarelo")}`);
-        console.log(`${this.colorir("║    18 - Excluir Pet                                           ║", "amarelo")}`);
+        console.log(`${this.colorir("║    1 - Cadastrar Pet              3 - Excluir Pet             ║", "amarelo")}`);
+        console.log(`${this.colorir("║    2 - Listar Pets                4 - Editar Pet              ║", "amarelo")}`);
         console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
         console.log(`${this.colorir("║  PRODUTOS:                                                    ║", "amarelo")}`);
-        console.log(`${this.colorir("║    9 - Cadastrar Produto          11 - Listar Produtos        ║", "amarelo")}`);
-        console.log(`${this.colorir("║    16 - Editar Produto            19 - Excluir Produto        ║", "amarelo")}`);
+        console.log(`${this.colorir("║    1 - Cadastrar Produto          3 - Listar Produtos         ║", "amarelo")}`);
+        console.log(`${this.colorir("║    2 - Editar Produto             4 - Excluir Produto         ║", "amarelo")}`);
         console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
         console.log(`${this.colorir("║  SERVIÇOS:                                                    ║", "amarelo")}`);
-        console.log(`${this.colorir("║    10 - Cadastrar Serviço         12 - Listar Serviços        ║", "amarelo")}`);
-        console.log(`${this.colorir("║    17 - Editar Serviço            20 - Excluir Serviço        ║", "amarelo")}`);
+        console.log(`${this.colorir("║    1 - Cadastrar Serviço         3 - Listar Serviços          ║", "amarelo")}`);
+        console.log(`${this.colorir("║    2 - Editar Serviço            4 - Excluir Serviço          ║", "amarelo")}`);
         console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
         console.log(`${this.colorir("║  CONSUMO E RELATÓRIOS:                                        ║", "amarelo")}`);
-        console.log(`${this.colorir("║    5 - Registrar Consumo          14 - Listar Consumos        ║", "amarelo")}`);
-        console.log(`${this.colorir("║    7 - Produtos/Serviços por Raça                             ║", "amarelo")}`);
-        console.log(`${this.colorir("║    13 - Produtos/Serviços Mais Consumidos                     ║", "amarelo")}`);
+        console.log(`${this.colorir("║    1 - Registrar Consumo                                      ║", "amarelo")}`);
+        console.log(`${this.colorir("║    2 - Listar Consumos                                        ║", "amarelo")}`);
+        console.log(`${this.colorir("║    3 - Produtos/Serviços por Raça                             ║", "amarelo")}`);
+        console.log(`${this.colorir("║    4 - Produtos/Serviços Mais Consumidos                      ║", "amarelo")}`);
         console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
         console.log(`${this.colorir("║  0 - Sair                                                     ║", "amarelo")}`);
         console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
         console.log(`${this.colorir("╚═══════════════════════════════════════════════════════════════╝", "amarelo")}\n`);
     }
 
-    private pausar(): void {
-        console.log(`\n${this.colorir("Pressione ENTER para continuar...", "magenta")}`);
-        this.entrada.receberTexto("");
+    private pausar(segundos: number = 1): void {
+        const inicio = Date.now();
+        while (Date.now() - inicio < segundos * 1000) {}
     }
 
     private colorir(texto: string, cor: 'vermelho' | 'verde' | 'amarelo' | 'azul' | 'magenta' | 'ciano' | 'branco' | 'reset'): string {
