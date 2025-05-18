@@ -47,6 +47,7 @@ export default class App {
             let opcao = this.entrada.receberNumero(`Por favor, escolha uma opção: `);
 
             switch (opcao) {
+                // Cliente
                 case 1:
                     const cadastroCliente = new CadastroCliente(this.empresa.getClientes());
                     cadastroCliente.cadastrar();
@@ -64,147 +65,136 @@ export default class App {
                     listagemClientes.listar();
                     break;
                 case 5:
-                    const registroConsumo = new RegistroConsumo(this.empresa.getClientes(), this.empresa.getProdutos(), this.empresa.getServicos(), this.empresa.getConsumos());
-                    registroConsumo.registrar();
-                    break;
-                case 6:
                     const listagemTopClientes = new ListagemTopClientes(this.empresa.getClientes());
                     listagemTopClientes.listar();
                     break;
+                // Pets
+                case 6:
+                    const cadastroPets = new CadastroPets(this.empresa.getClientes());
+                    cadastroPets.cadastrar();
+                    break;
                 case 7:
-                    const listagemPorRaca = new ListagemPorRaca(this.empresa.getProdutos(), this.empresa.getServicos());
-                    listagemPorRaca.listar();
-                    break;
-                case 8:
-                    const listagemPets = new ListagemPets(this.empresa.getClientes());
-                    listagemPets.listar();
-                    break;
-                case 9:
-                    const cadastroProduto = new CadastroProduto(this.empresa.getProdutos());
-                    cadastroProduto.cadastrar();
-                    break;
-                case 10:
-                    const cadastroServico = new CadastroServico(this.empresa.getServicos());
-                    cadastroServico.cadastrar();
-                    break;
-                case 11:
-                    const listagemProdutos = new ListagemProdutos(this.empresa.getProdutos());
-                    listagemProdutos.listar();  
-                    break;
-                case 12:
-                    const listagemServicos = new ListagemServicos(this.empresa.getServicos());
-                    listagemServicos.listar();
-                    break;
-                case 13:
-                    const listagemMaisConsumido = new ListagemMaisConsumido(this.empresa.getProdutos(), this.empresa.getServicos());
-                    listagemMaisConsumido.listar();
-                    break;
-                case 14:
-                    const listagemConsumos = new ListagemConsumos(this.empresa.getConsumos());
-                    listagemConsumos.listar();
-                    break;
-                case 15:
                     const editePet = new EditePet(this.empresa.getClientes());
                     editePet.editar();
                     break;
-                case 16:
+                case 8:
+                    const deletePet = new DeletePet(this.empresa.getClientes());
+                    deletePet.deletar();
+                    break;
+                case 9:
+                    const listagemPets = new ListagemPets(this.empresa.getClientes());
+                    listagemPets.listar();
+                    break;
+                case 10:
+                    const listagemPorRaca = new ListagemPorRaca(this.empresa.getProdutos(), this.empresa.getServicos());
+                    listagemPorRaca.listar();
+                    break;
+                // Produtos
+                case 11:
+                    const cadastroProduto = new CadastroProduto(this.empresa.getProdutos());
+                    cadastroProduto.cadastrar();
+                    break;
+                case 12:
                     const editeProduto = new EditeProduto(this.empresa.getProdutos());
                     editeProduto.editar();
+                    break;
+                case 13:
+                    const deleteProduto = new DeleteProduto(this.empresa.getProdutos(), this.empresa.getConsumos());
+                    deleteProduto.deletar();
+                    break;
+                case 14:
+                    const listagemProdutos = new ListagemProdutos(this.empresa.getProdutos());
+                    listagemProdutos.listar();  
+                    break;
+                // Serviços
+                case 15:
+                    const cadastroServico = new CadastroServico(this.empresa.getServicos());
+                    cadastroServico.cadastrar();
+                    break;
+                case 16:
+                    const listagemServicos = new ListagemServicos(this.empresa.getServicos());
+                    listagemServicos.listar();
                     break;
                 case 17:
                     const editeServico = new EditeServico(this.empresa.getServicos());
                     editeServico.editar();
                     break;
                 case 18:
-                    const deletePet = new DeletePet(this.empresa.getClientes());
-                    deletePet.deletar();
-                    break;
-                case 19:
-                    const deleteProduto = new DeleteProduto(this.empresa.getProdutos(), this.empresa.getConsumos());
-                    deleteProduto.deletar();
-                    break;
-                case 20:
                     const deleteServico = new DeleteServico(this.empresa.getServicos(), this.empresa.getConsumos());
                     deleteServico.deletar();
                     break;
+                // Consumos
+                case 19:
+                    const listagemMaisConsumido = new ListagemMaisConsumido(this.empresa.getProdutos(), this.empresa.getServicos());
+                    listagemMaisConsumido.listar();
+                    break;
+                case 20:
+                    const registroConsumo = new RegistroConsumo(this.empresa.getClientes(), this.empresa.getProdutos(), this.empresa.getServicos(), this.empresa.getConsumos());
+                    registroConsumo.registrar();
+                    break;
                 case 21:
-                    const cadastrarPets = new CadastroPets(this.empresa.getClientes());
-                    cadastrarPets.cadastrar();
+                    const listagemConsumos = new ListagemConsumos(this.empresa.getConsumos());
+                    listagemConsumos.listar();
                     break;
                 case 0:
                     execucao = false;
-                    console.log(`\n${this.colorir("Encerrando o sistema. Até mais! 🐾", "verde")}\n`);
+                    console.log(`\nEncerrando o sistema. Até mais! 🐾\n`);
                     break;
                 default:
-                    console.log(`\n${this.colorir("❌ Opção inválida. Tente novamente.", "vermelho")}\n`);
+                    console.log(`\n❌ Opção inválida. Tente novamente.\n`);
             }
             
-            if (execucao && opcao >= 0 && opcao <= 20) {
+            if (execucao && opcao >= 0 && opcao <= 21) {
                 this.pausar();
             }
         }
     }
 
     private exibirLogo(): void {
-        console.log(`\n${this.colorir("╔═══════════════════════════════════════════════════════════════╗", "ciano")}`);
-        console.log(`${this.colorir("║                                                               ║", "ciano")}`);
-        console.log(`${this.colorir("║                      🐾 PET LOVERS (C4P) 🐾                   ║", "ciano")}`);
-        console.log(`${this.colorir("║                                                               ║", "ciano")}`);
-        console.log(`${this.colorir("║           Sistema de Gerenciamento para Pet Shops             ║", "ciano")}`);
-        console.log(`${this.colorir("║                                                               ║", "ciano")}`);
-        console.log(`${this.colorir("╚═══════════════════════════════════════════════════════════════╝", "ciano")}\n`);
+        console.log(`\n╔═══════════════════════════════════════════════════════════════╗`);
+        console.log(`║                                                               ║`);
+        console.log(`║                      🐾 PET LOVERS (C4P) 🐾                   ║`);
+        console.log(`║                                                               ║`);
+        console.log(`║           Sistema de Gerenciamento para Pet Shops             ║`);
+        console.log(`║                                                               ║`);
+        console.log(`╚═══════════════════════════════════════════════════════════════╝\n`);
     }
 
     private exibirMenu(): void {
-        console.log(`${this.colorir("╔═══════════════════════════════════════════════════════════════╗", "amarelo")}`);
-        console.log(`${this.colorir("║                         MENU PRINCIPAL                        ║", "amarelo")}`);
-        console.log(`${this.colorir("╠═══════════════════════════════════════════════════════════════╣", "amarelo")}`);
-        console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
-        console.log(`${this.colorir("║  CLIENTES:                                                    ║", "amarelo")}`);
-        console.log(`${this.colorir("║    1 - Cadastrar Cliente          3 - Editar Cliente          ║", "amarelo")}`);
-        console.log(`${this.colorir("║    2 - Excluir Cliente            4 - Listar Clientes         ║", "amarelo")}`);
-        console.log(`${this.colorir("║    5 - Top 10 Clientes                                        ║", "amarelo")}`);
-        console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
-        console.log(`${this.colorir("║  PETS:                                                        ║", "amarelo")}`);
-        console.log(`${this.colorir("║    1 - Cadastrar Pet              3 - Excluir Pet             ║", "amarelo")}`);
-        console.log(`${this.colorir("║    2 - Listar Pets                4 - Editar Pet              ║", "amarelo")}`);
-        console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
-        console.log(`${this.colorir("║  PRODUTOS:                                                    ║", "amarelo")}`);
-        console.log(`${this.colorir("║    1 - Cadastrar Produto          3 - Listar Produtos         ║", "amarelo")}`);
-        console.log(`${this.colorir("║    2 - Editar Produto             4 - Excluir Produto         ║", "amarelo")}`);
-        console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
-        console.log(`${this.colorir("║  SERVIÇOS:                                                    ║", "amarelo")}`);
-        console.log(`${this.colorir("║    1 - Cadastrar Serviço         3 - Listar Serviços          ║", "amarelo")}`);
-        console.log(`${this.colorir("║    2 - Editar Serviço            4 - Excluir Serviço          ║", "amarelo")}`);
-        console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
-        console.log(`${this.colorir("║  CONSUMO E RELATÓRIOS:                                        ║", "amarelo")}`);
-        console.log(`${this.colorir("║    1 - Registrar Consumo                                      ║", "amarelo")}`);
-        console.log(`${this.colorir("║    2 - Listar Consumos                                        ║", "amarelo")}`);
-        console.log(`${this.colorir("║    3 - Produtos/Serviços por Raça                             ║", "amarelo")}`);
-        console.log(`${this.colorir("║    4 - Produtos/Serviços Mais Consumidos                      ║", "amarelo")}`);
-        console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
-        console.log(`${this.colorir("║  0 - Sair                                                     ║", "amarelo")}`);
-        console.log(`${this.colorir("║                                                               ║", "amarelo")}`);
-        console.log(`${this.colorir("╚═══════════════════════════════════════════════════════════════╝", "amarelo")}\n`);
+        console.log(`╔═══════════════════════════════════════════════════════════════╗`);
+        console.log(`║                         MENU PRINCIPAL                        ║`);
+        console.log(`╠═══════════════════════════════════════════════════════════════╣`);
+        console.log(`║                                                               ║`);
+        console.log(`║  CLIENTES:                                                    ║`);
+        console.log(`║    1 - Cadastrar Cliente          3 - Excluir Cliente         ║`);
+        console.log(`║    2 - Editar Cliente             4 - Listar Clientes         ║`);
+        console.log(`║    5 - Top 10 Clientes                                        ║`);
+        console.log(`║                                                               ║`);
+        console.log(`║  PETS:                                                        ║`);
+        console.log(`║    6 - Cadastrar Pet              8 - Excluir Pet             ║`);
+        console.log(`║    7 - Editar Pet                 9 - Listar Pets             ║`);
+        console.log(`║   10 - Listar por Raça                                        ║`);
+        console.log(`║                                                               ║`);
+        console.log(`║  PRODUTOS:                                                    ║`);
+        console.log(`║   11 - Cadastrar Produto         13 - Excluir Produto         ║`);
+        console.log(`║   12 - Editar Produto            14 - Listar Produtos         ║`);
+        console.log(`║                                                               ║`);
+        console.log(`║  SERVIÇOS:                                                    ║`);
+        console.log(`║   15 - Cadastrar Serviço         17 - Editar Serviço          ║`);
+        console.log(`║   16 - Listar Serviços           18 - Excluir Serviço         ║`);
+        console.log(`║                                                               ║`);
+        console.log(`║  CONSUMO E RELATÓRIOS:                                        ║`);
+        console.log(`║   19 - Produtos/Serviços Mais Consumidos                      ║`);
+        console.log(`║   20 - Registrar Consumo                                      ║`);
+        console.log(`║   21 - Listar Consumos                                        ║`);
+        console.log(`║                                                               ║`);
+        console.log(`║  0 - Sair                                                     ║`);
+        console.log(`║                                                               ║`);
+        console.log(`╚═══════════════════════════════════════════════════════════════╝\n`);
     }
 
     private pausar(segundos: number = 1): void {
         const inicio = Date.now();
         while (Date.now() - inicio < segundos * 1000) {}
-    }
-
-    private colorir(texto: string, cor: 'vermelho' | 'verde' | 'amarelo' | 'azul' | 'magenta' | 'ciano' | 'branco' | 'reset'): string {
-        const cores = {
-            "vermelho": "\x1b[31m",
-            "verde": "\x1b[32m",
-            "amarelo": "\x1b[33m",
-            "azul": "\x1b[34m",
-            "magenta": "\x1b[35m",
-            "ciano": "\x1b[36m",
-            "branco": "\x1b[37m",
-            "reset": "\x1b[0m"
-        };
-        
-        return `${cores[cor]}${texto}${cores["reset"]}`;
     }
 }
