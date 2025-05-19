@@ -1,6 +1,6 @@
 # 🐾 PetLovers CLI - Sistema de Gerenciamento de Pet Shops e Clínicas Veterinárias
 
-Projeto desenvolvido no contexto da atividade prática da disciplina ministrada pelo Professor Dr. Eng. Gerson Penha.
+Projeto desenvolvido no contexto da atividade prática da disciplina ministrada pelo Professor Gerson Penha.
 
 ## 📘 Sobre o Projeto
 
@@ -43,6 +43,6 @@ O código-base inicial está disponível em:
 
 ## 👨‍💻 Autor
 
-Desenvolvido por [Seu Nome Aqui]  
-Disciplina: [Nome da Disciplina]  
-Professor: Dr. Eng. Gerson Penha
+Desenvolvido por Thomaz Feitosa de Mello  
+Disciplina: Técnicas de programação  
+Professor: Gerson Penha
