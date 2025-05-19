@@ -26,3 +26,6 @@ Listagem dos consumos por tipo e raça de pet.
 
 Top 5 clientes que mais consumiram em valor.
 Nota: O sistema funciona totalmente em memória, sem necessidade de banco de dados.
+🔗 Repositório Original
+O código-base inicial está disponível em:
+https://github.com/gerson-pn/atvi-pl-typescript
