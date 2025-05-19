@@ -1,0 +1,1 @@
+🐾 PetLovers CLI - Sistema de Gerenciamento de Pet Shops e Clínicas Veterinárias
