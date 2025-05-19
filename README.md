@@ -35,3 +35,7 @@ Este projeto é acadêmico e simula um cenário real de empreendedorismo tecnol�
 Os dados não são persistidos após o encerramento do programa.
 
 O sistema é operado via terminal.
+👨‍💻 Autor
+Desenvolvido por [Seu Nome Aqui]
+Disciplina: [Nome da Disciplina]
+Professor: Dr. Eng. Gerson Penha
