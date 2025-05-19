@@ -12,3 +12,16 @@ VSCode
 Node.js
 🚀 Funcionalidades
 A versão inicial entregue por terceiros contempla apenas o cadastro básico de clientes. Esta versão expandida, desenvolvida por você, inclui os seguintes recursos:
+CRUD de clientes e seus pets.
+
+CRUD de produtos e serviços.
+
+Registro de consumo de produtos ou serviços por cliente.
+
+Top 10 clientes que mais consumiram (por quantidade).
+
+Listagem dos produtos e serviços mais consumidos.
+
+Listagem dos consumos por tipo e raça de pet.
+
+Top 5 clientes que mais consumiram em valor.
