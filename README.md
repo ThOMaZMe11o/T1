@@ -29,3 +29,9 @@ Nota: O sistema funciona totalmente em memória, sem necessidade de banco de dad
 🔗 Repositório Original
 O código-base inicial está disponível em:
 https://github.com/gerson-pn/atvi-pl-typescript
+📌 Observações
+Este projeto é acadêmico e simula um cenário real de empreendedorismo tecnológico.
+
+Os dados não são persistidos após o encerramento do programa.
+
+O sistema é operado via terminal.
