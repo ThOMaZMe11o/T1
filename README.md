@@ -25,3 +25,4 @@ Listagem dos produtos e serviços mais consumidos.
 Listagem dos consumos por tipo e raça de pet.
 
 Top 5 clientes que mais consumiram em valor.
+Nota: O sistema funciona totalmente em memória, sem necessidade de banco de dados.
