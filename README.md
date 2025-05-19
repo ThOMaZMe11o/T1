@@ -10,3 +10,5 @@ TypeScript
 VSCode
 
 Node.js
+🚀 Funcionalidades
+A versão inicial entregue por terceiros contempla apenas o cadastro básico de clientes. Esta versão expandida, desenvolvida por você, inclui os seguintes recursos:
